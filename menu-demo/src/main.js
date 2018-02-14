@@ -3,10 +3,14 @@ const app = electron.app
 
 const BrowserWindow = electron.BrowserWindow
 const Menu = electron.Menu
+let mainWindow
 
 app.on('ready', _ => {
     console.log('ready')
-    new BrowserWindow()
+    mainWindow = new BrowserWindow({
+        height: 400,
+        width: 400
+    })
 
     const name = electron.app.getName()
     const template = [
@@ -29,7 +33,10 @@ app.on('ready', _ => {
             }]
         }
     ]
-
+    mainWindow.on('closed', _ => {
+        console.log('closed')
+        mainWindow = null; //make sure its garbage collected
+    })
 
     const menu = Menu.buildFromTemplate(template)
     Menu.setApplicationMenu(menu)
