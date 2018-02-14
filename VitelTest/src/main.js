@@ -54,7 +54,7 @@ app.on('ready', _ => {
 
     // login window
     var xpos = mainwindow_x - 400;
-    var ypos = mainwindow_y - 200;
+    var ypos = mainwindow_y - 400;
     loginwindow = new BrowserWindow({
         height: 200,
         width: 400,
