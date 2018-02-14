@@ -10,6 +10,7 @@ const Tray = electron.Tray
 
 let mainWindow
 let logonWindow
+let dialerwindow
 
 let mainwindow_x
 let mainwindow_y
@@ -52,17 +53,39 @@ app.on('ready', _ => {
     // const menu = Menu.buildFromTemplate(vitelApplicationMenu(app, appName))
     // Menu.setApplicationMenu(menu)
 
+    // dialer window
+    dialerwindow = new BrowserWindow({
+        height: 200,
+        width: 400,
+        autoHideMenuBar: true, 
+        show: true,       
+        x: mainwindow_x - 400,
+        y: mainwindow_y - 400,
+        closable: false,
+        minimizable: false,
+        maximizable: false,
+        resizable: false,
+        title: "Vitel dialer"
+    })
+    dialerwindow.on('closed', _ => {
+        console.log('dialerwindow closed')
+        dialerwindow = null; //make sure its garbage collected
+    })
+    dialerwindow.loadURL(url.format({
+        protocol: 'file',
+        slashes: true,
+        pathname: require('path').join(__dirname, 'pages', 'dialer.html')
+    }))
+
     // login window
-    var xpos = mainwindow_x - 400;
-    var ypos = mainwindow_y - 400;
     loginwindow = new BrowserWindow({
         height: 200,
         width: 400,
         
         autoHideMenuBar: true, 
-        show: false,       
-        x: xpos,
-        y: ypos,
+        show: true,       
+        x:  mainwindow_x - 400,
+        y: mainwindow_y - 600,
         closable: false,
         minimizable: false,
         maximizable: false,
@@ -90,6 +113,12 @@ app.on('ready', _ => {
             }
         },
         {
+            label: 'Dialer',
+            click: _ => {
+                dialerwindow.isVisible() ? dialerwindow.hide() : dialerwindow.show()
+            }
+        },
+        {
             label: 'Login',
             click: _ => {
                 loginwindow.isVisible() ? loginwindow.hide() : loginwindow.show()
@@ -101,7 +130,6 @@ app.on('ready', _ => {
                 console.log('About')
             },
             role: 'about',
-            accelerator: 'Cmd+A'
         },
         {
             type: 'separator'
@@ -111,9 +139,9 @@ app.on('ready', _ => {
             click: _ => {
                 loginwindow.setClosable(true)
                 mainWindow.setClosable(true)
+                dialerwindow.setClosable(true)                
                 app.quit()
             },
-            accelerator: 'Cmd+Q'
         }
     ]
     let trayCtxMenu = Menu.buildFromTemplate(ctxtemplate)
@@ -133,4 +161,15 @@ ipc.on('login_user', _ => {
 ipc.on('login_user_cancel', _ => {
     console.log('hide the window')
     loginwindow.hide()
+})
+
+
+ipc.on('hide_main', _ => {
+    console.log('hide the window')
+    mainWindow.hide()
+})
+
+ipc.on('hide_dialer', _ => {
+    console.log('hide the window')
+    dialerwindow.hide()
 })
