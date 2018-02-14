@@ -19,13 +19,9 @@ app.on('ready', _ => {
     // Load the url of the page you want to display in the main window
     mainWindow.loadURL('file://' + path.join(__dirname, 'countdown.html'))
 
+    //this will happen i main regardless of what happens in render
     //countdown()
 
-    // current application code  - missing packages here
-    // mainWindow.loadURL(url.format({ 
-    //     pathname: path.join(__dirname, 'countdown.html'), 
-    //     protocol: 'file:', 
-    //     slashes: true }))
 
     mainWindow.on('closed', _ => {
         console.log('closed')
