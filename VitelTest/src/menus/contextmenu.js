@@ -1,6 +1,19 @@
 
-module.exports = function vitelContextMenu(loginwindow, app, appName) {
+module.exports = function vitelContextMenu(loginwindow, dialerwindow, mainWindow, app, appName) {
+
     const ctxtemplate = [
+        {
+            label: 'Main',
+            click: _ => {
+                mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show()
+            }
+        },
+        {
+            label: 'Dialer',
+            click: _ => {
+                dialerwindow.isVisible() ? dialerwindow.hide() : dialerwindow.show()
+            }
+        },
         {
             label: 'Login',
             click: _ => {
@@ -13,7 +26,6 @@ module.exports = function vitelContextMenu(loginwindow, app, appName) {
                 console.log('About')
             },
             role: 'about',
-            accelerator: 'Cmd+A'
         },
         {
             type: 'separator'
@@ -21,12 +33,14 @@ module.exports = function vitelContextMenu(loginwindow, app, appName) {
         {
             label: 'Quit',
             click: _ => {
-                loginwindow.closable(true)
+                loginwindow.setClosable(true)
+                mainWindow.setClosable(true)
+                dialerwindow.setClosable(true)
                 app.quit()
             },
-            accelerator: 'Cmd+Q'
         }
     ]
     return ctxtemplate;
+
 
 }
