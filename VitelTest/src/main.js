@@ -1,5 +1,3 @@
-const vitelApplicationMenu = require('./menus/appmenu.js')
-const vitelContextMenu = require('./menus/contextmenu.js')
 const electron = require('electron')
 const url = require('url')
 const path = require('path')
@@ -13,31 +11,118 @@ const Tray = electron.Tray
 let mainWindow
 let logonWindow
 
-let loginwindowx 
-let loginwindowy
+let mainwindow_x
+let mainwindow_y
 
 app.on('ready', _ => {
     const appName = electron.app.getName()
     var screenElectron = electron.screen;
     var mainScreen = screenElectron.getPrimaryDisplay();
-    loginwindowx = mainScreen.workAreaSize.width;
-    loginwindowy = mainScreen.workAreaSize.height;
+    mainwindow_x = mainScreen.workAreaSize.width;
+    mainwindow_y = mainScreen.workAreaSize.height;
 
-    console.log(mainScreen)
 
-    intializeLoginwindow(loginwindowx,loginwindowy)
 
-    initializeMainWindow()
-
+    //Main page of the application
+    mainWindow = new BrowserWindow({
+        height: 200,
+        width:  mainwindow_x,
+        x: 1,
+        y: mainwindow_y - 200,
+        icon: path.join('src', 'images', 'trayicon.png'),
+        closable: false,
+        minimizable: false,
+        maximizable: false,
+        resizable: false,
+        title: "Vitel lite"
+    })
+    mainWindow.on('closed', _ => {
+        console.log('closed')
+        mainWindow = null; //make sure its garbage collected
+        logonWindow = null;
+        mainwindow_x = null;
+        mainwindow_y = null;
+    })
+    let mainwindowurl = url.format({
+        protocol: 'file',
+        slashes: true,
+        pathname: require('path').join(__dirname, 'pages', 'main.html')
+    })
+    mainWindow.loadURL(mainwindowurl)
     // const menu = Menu.buildFromTemplate(vitelApplicationMenu(app, appName))
     // Menu.setApplicationMenu(menu)
+
+    // login window
+    var xpos = mainwindow_x - 400;
+    var ypos = mainwindow_y - 200;
+    loginwindow = new BrowserWindow({
+        height: 200,
+        width: 400,
+        
+        autoHideMenuBar: true, 
+        show: false,       
+        x: xpos,
+        y: ypos,
+        closable: false,
+        minimizable: false,
+        maximizable: false,
+        resizable: false,
+        title: "Vitel login"
+    })
+    loginwindow.on('closed', _ => {
+        console.log('loginwindow closed')
+        loginwindow = null; //make sure its garbage collected
+    })
+    loginwindow.loadURL(url.format({
+        protocol: 'file',
+        slashes: true,
+        pathname: require('path').join(__dirname, 'pages', 'login.html')
+    }))
 
     //application context menu
     const tray = new Tray(path.join('src', 'images', 'trayicon.png'))
     tray.setToolTip('Vitel application')
-    tray.setContextMenu(Menu.buildFromTemplate(vitelContextMenu(loginwindow, app, appName)))
+    const ctxtemplate = [
+        {
+            label: 'Main',
+            click: _ => {
+                mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show()
+            }
+        },
+        {
+            label: 'Login',
+            click: _ => {
+                loginwindow.isVisible() ? loginwindow.hide() : loginwindow.show()
+            }
+        },
+        {
+            label: 'About',
+            click: _ => {
+                console.log('About')
+            },
+            role: 'about',
+            accelerator: 'Cmd+A'
+        },
+        {
+            type: 'separator'
+        },
+        {
+            label: 'Quit',
+            click: _ => {
+                loginwindow.setClosable(true)
+                mainWindow.setClosable(true)
+                app.quit()
+            },
+            accelerator: 'Cmd+Q'
+        }
+    ]
+    let trayCtxMenu = Menu.buildFromTemplate(ctxtemplate)
+    tray.setContextMenu(trayCtxMenu)
+})
 
-
+app.on('window-all-closed', () => {
+    console.log("closed killed....");
+    app.quit()
 })
 
 ipc.on('login_user', _ => {
@@ -49,54 +134,3 @@ ipc.on('login_user_cancel', _ => {
     console.log('hide the window')
     loginwindow.hide()
 })
-
-function initializeMainWindow() {
-
-    //Main page of the application
-    mainWindow = new BrowserWindow({
-        height: 400,
-        width: 400,
-        icon: path.join('src', 'images', 'trayicon.png'),
-    })
-    mainWindow.on('closed', _ => {
-        console.log('closed')
-        mainWindow = null; //make sure its garbage collected
-    })
-    let mainwindowurl = url.format({
-        protocol: 'file',
-        slashes: true,
-        pathname: require('path').join(__dirname, 'pages', 'main.html')
-    })
-
-    mainWindow.loadURL(mainwindowurl)
-}
-
-function intializeLoginwindow(loginwindowx,loginwindowy) {
-    // login window
-    var xpos = loginwindowx - 400;
-    var ypos = loginwindowy - 200;
-    loginwindow = new BrowserWindow({
-        height: 200,
-        width: 400,
-        show: false,
-        autoHideMenuBar: true,
-        maximizable: false,
-        x: xpos,
-        y: ypos,
-        closable:false,
-        minimizable:false,
-        resizable:false,
-        title:"Vitel login"
-    })
-    loginwindow.on('closed', _ => {
-        console.log('loginwindow closed')
-        loginwindow = null; //make sure its garbage collected
-    })
-    let loginwindowurl = url.format({
-        protocol: 'file',
-        slashes: true,
-        pathname: require('path').join(__dirname, 'pages', 'login.html')
-    })
-    loginwindow.loadURL(loginwindowurl)
-}
-

@@ -1,6 +1,6 @@
 
 module.exports = function vitelContextMenu(loginwindow, app, appName) {
-    const template = [
+    const ctxtemplate = [
         {
             label: 'Login',
             click: _ => {
@@ -21,11 +21,12 @@ module.exports = function vitelContextMenu(loginwindow, app, appName) {
         {
             label: 'Quit',
             click: _ => {
+                loginwindow.closable(true)
                 app.quit()
             },
             accelerator: 'Cmd+Q'
         }
     ]
-    return template;
+    return ctxtemplate;
 
 }
