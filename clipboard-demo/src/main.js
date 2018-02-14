@@ -17,8 +17,15 @@ app.on('ready', _ => {
     tray.setContextMenu(contextMenu())
 
 
+    logonWindow = new BrowserWindow({
+        height: 400,
+        width: 400
+    })
+    logonWindow.on('closed', _ => {
+        logonWindow = null;
+    })
 
-    console.log('ready')
+
     mainWindow = new BrowserWindow({
         height: 400,
         width: 400
