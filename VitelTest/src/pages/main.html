@@ -5,78 +5,162 @@
   <link rel="stylesheet" href="../css/vitellite.css" />
 </head>
 
-<body  style="background-color: #272524;color: #fff;width:99%" >
+<body style="background-color: #272524;color: #fff;width:99%">
 
   <div class="row" style="padding:3px">
 
     <div class="col-lg-2">
-      test
+      <div class="row">
+        <div class="clearfix col-lg-8 col-md-12 p-x-0">
+          <strong class="col-sm-5 col-xs-12 control-label">Status</strong>
+          <span class="col-sm-7 col-xs-12">
+            <img src="../images/agent_busy.png">
+          </span>
+        </div>
+      </div>
     </div>
     <div class="col-lg-2">
-      test
+      <div class="row">
+
+        <strong class="col-sm-5 col-xs-12 control-label">Agent</strong>
+        <span class="col-sm-7 col-xs-12">
+          Roche Olivier
+        </span>
+
+      </div>
     </div>
 
     <div class="col-lg-2">
-      test
+      <div class="row">
+        <strong class="col-sm-5 col-xs-12 control-label">Channels</strong>
+        <span class="col-sm-7 col-xs-12">
+          Vitel, Myriad
+        </span>
+      </div>
     </div>
 
     <div class="col-lg-2">
-      test
+      <div class="row">
+        <strong class="col-sm-5 col-xs-12 control-label">SLA</strong>
+        <span class="col-sm-7 col-xs-12">
+          <img src="../images/agent_available.png">
+        </span>
+      </div>
     </div>
     <div class="col-lg-2">
-        <div class="btn-group btn-group-justified" role="group" aria-label="...">
-            <div class="btn-group" role="group">
-              <button type="button" class="btn btn-xs btn-default">Left</button>
-            </div>
-            <div class="btn-group" role="group">
-              <button type="button" class="btn  btn-xs btn-default">Middle</button>
-            </div>
-            <div class="btn-group" role="group">
-              <button type="button" class="btn  btn-xs btn-default">Right</button>
-            </div>
-          </div>
+      <div class="row">
+        <strong class="col-sm-5 col-xs-12 control-label">Other</strong>
+        <span class="col-sm-7 col-xs-12">
+          Some data
+        </span>
+      </div>
     </div>
 
     <div class="col-lg-2">
-        <button class="btn btn-xs btn-default pull-right" id='hide_main'>Hide</button>
+      <div class="row">
+        <strong class="col-sm-5 col-xs-12 control-label">Diverse</strong>
+        <span class="col-sm-7 col-xs-12">
+          Other data
+        </span>
+      </div>
     </div>
 
-  </div> 
+  </div>
+  <hr>
   <div class="row" style="padding:3px">
 
-      <div class="col-lg-2">
-        test
+    <div class="col-lg-2">
+      <div class="row">
+        <div class="clearfix col-lg-8 col-md-12 p-x-0">
+          <strong class="col-sm-5 col-xs-12 control-label">Actions</strong>
+          <span class="col-sm-7 col-xs-12">
+            <button class="btn btn-xs btn-default pull-right" id='hide_main1'>Take next email</button>
+          </span>
+        </div>
       </div>
-      <div class="col-lg-2">
-        test
+
+    </div>
+    <div class="col-lg-2">
+      <div class="row">
+        <div class="clearfix col-lg-8 col-md-12 p-x-0">
+          <strong class="col-sm-5 col-xs-12 control-label">Comment</strong>
+          <span class="col-sm-7 col-xs-12">
+            <input class="form-control"></input>
+          </span>
+        </div>
       </div>
-  
-      <div class="col-lg-2">
-        test
+    </div>
+
+    <div class="col-lg-2">
+      <div class="row">
+        <div class="clearfix col-lg-8 col-md-12 p-x-0">
+          <strong class="col-sm-5 col-xs-12 control-label">Dropdown</strong>
+          <span class="col-sm-7 col-xs-12">
+              <div class="dropdown">
+                  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+                  <span class="caret"></span></button>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">HTML</a></li>
+                    <li><a href="#">CSS</a></li>
+                    <li><a href="#">JavaScript</a></li>
+                  </ul>
+                </div>
+          </span>
+        </div>
       </div>
-  
-      <div class="col-lg-2">
-        test
+    </div>
+
+    <div class="col-lg-2">
+      <div class="row">
+        <div class="clearfix col-lg-8 col-md-12 p-x-0">
+          <strong class="col-sm-5 col-xs-12 control-label">Gender</strong>
+          <span class="col-sm-7 col-xs-12">
+              <input class="form-control"></input>
+          </span>
+        </div>
       </div>
-      <div class="col-lg-2">
-          <div class="btn-group btn-group-justified" role="group" aria-label="...">
+    </div>
+
+    <div class="col-lg-2">
+      <div class="row">
+        <div class="clearfix col-lg-8 col-md-12 p-x-0">
+          <strong class="col-sm-5 col-xs-12 control-label">Hide window</strong>
+          <span class="col-sm-7 col-xs-12">
+            <button class="btn btn-xs btn-default pull-right" id='hide_main'>Hide window</button>
+          </span>
+        </div>
+      </div>
+
+
+    </div>
+
+
+    <div class="col-lg-2">
+      <div class="row">
+        <div class="clearfix col-lg-8 col-md-12 p-x-0">
+          <strong class="col-sm-5 col-xs-12 control-label">Toggle windows</strong>
+          <span class="col-sm-7 col-xs-12">
+            <div class="btn-group btn-group-justified" role="group" aria-label="...">
               <div class="btn-group" role="group">
-                <button type="button" class="btn btn-xs btn-default">Left</button>
+                <button id="toggle_contacts_main" type="button" class="btn btn-xs btn-default">Contacts</button>
               </div>
               <div class="btn-group" role="group">
-                <button type="button" class="btn  btn-xs btn-default">Middle</button>
+                <button id="toggle_login_main" type="button" class="btn  btn-xs btn-default">Login</button>
               </div>
               <div class="btn-group" role="group">
-                <button type="button" class="btn  btn-xs btn-default">Right</button>
+                <button id="toggle_chat_main" type="button" class="btn  btn-xs btn-default">Chat</button>
+              </div>
+              <div class="btn-group" role="group">
+                <button id="toggle_dialer_main" type="button" class="btn  btn-xs btn-default">Dialer</button>
               </div>
             </div>
+          </span>
+        </div>
       </div>
-  
-      <div class="col-lg-2">
-          <button class="btn btn-xs btn-default pull-right" id='hide_main1'>Hide</button>
-      </div>
-  
-    </div> 
+    </div>
+
+  </div>
+
 
   <script>
     require('../render/mainrender')

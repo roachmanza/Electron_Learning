@@ -96,3 +96,20 @@ ipc.on('hide_contacts', _ => {
     console.log('hide the window')
     contactswindow.hide()
 })
+
+//toglle
+ipc.on('toggle_contacts_main', _ => {
+    contactswindow.isVisible() ? contactswindow.hide() : contactswindow.show()
+})
+
+ipc.on('toggle_login_main', _ => {
+    loginwindow.isVisible() ? loginwindow.hide() : loginwindow.show()
+})
+
+ipc.on('toggle_chat_main', _ => {
+    chatwindow.isVisible() ? chatwindow.hide() : chatwindow.show()
+})
+
+ipc.on('toggle_dialer_main', _ => {
+    dialerwindow.isVisible() ? dialerwindow.hide() : dialerwindow.show()
+})

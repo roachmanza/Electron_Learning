@@ -35,7 +35,7 @@ module.exports = function vitelContextMenu(contactswindow, chatwindow, loginwind
         {
             type: 'separator'
         },
-        {
+        { 
             label: 'Show all windows',
             click: _ => {
                 mainWindow.isVisible() ? mainWindow.show() : mainWindow.show()
