@@ -1,14 +1,40 @@
 <html>
 
 <head>
+
+    <link rel="stylesheet" href="../css/bootstrap.css" />
     <link rel="stylesheet" href="../css/vitellite.css" />
 </head>
 
-<body style="background-color: rgb(80, 21, 10); color: #fff">
-    <h3>dialer.</h3>
-   <span> dialer window.
-</span><br/>
-    <button id='hide_dialer'>Hide</button>
+<body style="background-color: #272524;color: #fff;padding:5px;width:380px">
+
+    
+        <div class="panel panel-default">
+                <div class="panel-body">
+        
+        
+                    <div class="row">
+                        <div class="clearfix col-lg-8 col-md-12 p-x-0">
+                            <strong class="col-sm-5 col-xs-12 control-label">Dialed number</strong>
+                            <span class="col-sm-7 col-xs-12">
+                                <input class="form-control"></input>
+                            </span>
+                        </div>
+                    </div>
+                    <img src="../images/dialpad.png">
+                    <button class="btn btn-xs btn-default" id='hide_dialer'>Hide</button>
+        
+                </div>
+            </div>
+
+            
+
+        
+        
+   
+
+
+
     <script>
         require('../render/dialerrender')
     </script>

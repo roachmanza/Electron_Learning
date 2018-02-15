@@ -1,16 +1,86 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="../css/vitellite.css" />
+  <link rel="stylesheet" href="../css/bootstrap.css" />
+  <link rel="stylesheet" href="../css/vitellite.css" />
 </head>
 
-<body>
-    <h1>Hellow world from vitel</h1>
-    <div id="count"></div>
-    <button id='hide_main'>Hide</button>
-    <script>
-        require('../render/mainrender')
-    </script>
+<body  style="background-color: #272524;color: #fff;width:99%" >
+
+  <div class="row" style="padding:3px">
+
+    <div class="col-lg-2">
+      test
+    </div>
+    <div class="col-lg-2">
+      test
+    </div>
+
+    <div class="col-lg-2">
+      test
+    </div>
+
+    <div class="col-lg-2">
+      test
+    </div>
+    <div class="col-lg-2">
+        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-xs btn-default">Left</button>
+            </div>
+            <div class="btn-group" role="group">
+              <button type="button" class="btn  btn-xs btn-default">Middle</button>
+            </div>
+            <div class="btn-group" role="group">
+              <button type="button" class="btn  btn-xs btn-default">Right</button>
+            </div>
+          </div>
+    </div>
+
+    <div class="col-lg-2">
+        <button class="btn btn-xs btn-default pull-right" id='hide_main'>Hide</button>
+    </div>
+
+  </div> 
+  <div class="row" style="padding:3px">
+
+      <div class="col-lg-2">
+        test
+      </div>
+      <div class="col-lg-2">
+        test
+      </div>
+  
+      <div class="col-lg-2">
+        test
+      </div>
+  
+      <div class="col-lg-2">
+        test
+      </div>
+      <div class="col-lg-2">
+          <div class="btn-group btn-group-justified" role="group" aria-label="...">
+              <div class="btn-group" role="group">
+                <button type="button" class="btn btn-xs btn-default">Left</button>
+              </div>
+              <div class="btn-group" role="group">
+                <button type="button" class="btn  btn-xs btn-default">Middle</button>
+              </div>
+              <div class="btn-group" role="group">
+                <button type="button" class="btn  btn-xs btn-default">Right</button>
+              </div>
+            </div>
+      </div>
+  
+      <div class="col-lg-2">
+          <button class="btn btn-xs btn-default pull-right" id='hide_main1'>Hide</button>
+      </div>
+  
+    </div> 
+
+  <script>
+    require('../render/mainrender')
+  </script>
 </body>
 
 </html>

@@ -1,5 +1,5 @@
 
-module.exports = function vitelContextMenu(loginwindow, dialerwindow, mainWindow, app, appName) {
+module.exports = function vitelContextMenu(contactswindow, chatwindow, loginwindow, dialerwindow, mainWindow, app, appName) {
 
     const ctxtemplate = [
         {
@@ -21,6 +21,34 @@ module.exports = function vitelContextMenu(loginwindow, dialerwindow, mainWindow
             }
         },
         {
+            label: 'Chat',
+            click: _ => {
+                chatwindow.isVisible() ? chatwindow.hide() : chatwindow.show()
+            }
+        },
+        {
+            label: 'Contacts',
+            click: _ => {
+                contactswindow.isVisible() ? contactswindow.hide() : contactswindow.show()
+            }
+        },
+        {
+            type: 'separator'
+        },
+        {
+            label: 'Show all windows',
+            click: _ => {
+                mainWindow.isVisible() ? mainWindow.show() : mainWindow.show()
+                dialerwindow.isVisible() ? mainWindow.show() : dialerwindow.show()
+                loginwindow.isVisible() ? mainWindow.show() : loginwindow.show()
+                chatwindow.isVisible() ? chatwindow.show() : chatwindow.show()
+                contactswindow.isVisible() ? contactswindow.show() : contactswindow.show()
+            }
+        },
+        {
+            type: 'separator'
+        },
+        {
             label: 'About',
             click: _ => {
                 console.log('About')
@@ -36,6 +64,8 @@ module.exports = function vitelContextMenu(loginwindow, dialerwindow, mainWindow
                 loginwindow.setClosable(true)
                 mainWindow.setClosable(true)
                 dialerwindow.setClosable(true)
+                chatwindow.setClosable(true)
+                contactswindow.setClosable(true)
                 app.quit()
             },
         }

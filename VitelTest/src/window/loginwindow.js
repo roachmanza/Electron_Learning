@@ -7,7 +7,7 @@ module.exports = function vitelLoginWindow(path, url, BrowserWindow, mainwindow_
         autoHideMenuBar: true, 
         show: true,       
         x:  mainwindow_x - 400,
-        y: mainwindow_y - 600,
+        y: mainwindow_y - 700,
         icon: path.join('src', 'images', 'login_icon.png'),
         closable: false,
         minimizable: false,

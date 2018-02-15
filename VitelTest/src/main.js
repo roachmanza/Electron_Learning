@@ -3,6 +3,8 @@ const vitelContextMenu = require('./menus/contextmenu')
 const vitelApplicationWindow = require('./window/mainwindow')
 const vitelDialerWindow = require('./window/dialerwindow')
 const vitelLoginWindow = require('./window/loginwindow')
+const vitelChatWindow = require('./window/chatwindow')
+const vitelContactsWindow = require('./window/contactswindow')
 
 const electron = require('electron')
 
@@ -18,6 +20,8 @@ const Tray = electron.Tray
 let mainWindow
 let logonWindow
 let dialerwindow
+let chatwindow
+let contactswindow
 
 let mainwindow_x
 let mainwindow_y
@@ -36,14 +40,18 @@ app.on('ready', _ => {
 
     loginwindow = vitelLoginWindow(path,url, BrowserWindow,mainwindow_x,mainwindow_y);
 
+    chatwindow = vitelChatWindow(path,url, BrowserWindow,mainwindow_x,mainwindow_y);
+
+    contactswindow= vitelContactsWindow(path,url, BrowserWindow,mainwindow_x,mainwindow_y);
+    
     // Application menu
-    const menu = Menu.buildFromTemplate(vitelApplicationMenu(loginwindow, dialerwindow, mainWindow,app, appName))
+    const menu = Menu.buildFromTemplate(vitelApplicationMenu(contactswindow,chatwindow,loginwindow, dialerwindow, mainWindow,app, appName))
     Menu.setApplicationMenu(menu)
 
     // Application Context menu in the tray
     const tray = new Tray(path.join('src', 'images', 'trayicon.png'))
     tray.setToolTip('Vitel application')  
-    let trayCtxMenu = Menu.buildFromTemplate(vitelContextMenu(loginwindow,dialerwindow,mainWindow, app, appName))
+    let trayCtxMenu = Menu.buildFromTemplate(vitelContextMenu(contactswindow,chatwindow,loginwindow,dialerwindow,mainWindow, app, appName))
     tray.setContextMenu(trayCtxMenu)
 })
 
@@ -76,4 +84,15 @@ ipc.on('hide_main', _ => {
     mainWindow.hide()
 })
 
+//chat events
+ipc.on('hide_chat', _ => {
+    console.log('hide the window')
+    chatwindow.hide()
+})
 
+
+//contacts events
+ipc.on('hide_contacts', _ => {
+    console.log('hide the window')
+    contactswindow.hide()
+})

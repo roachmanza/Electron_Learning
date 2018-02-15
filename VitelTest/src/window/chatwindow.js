@@ -1,30 +1,30 @@
 const electron = require('electron')
 
-module.exports = function vitelDialerWindow(path, url, BrowserWindow, mainwindow_x, mainwindow_y) {
+module.exports = function vitelChatWindow(path, url, BrowserWindow, mainwindow_x, mainwindow_y) {
 
-    dialerwindow = new BrowserWindow({
+    chatwindow = new BrowserWindow({
         height: 300,
         width: 400,
         autoHideMenuBar: true,
         show: true,
-        x: mainwindow_x - 400,
+        x: mainwindow_x - 800,
         y: mainwindow_y - 500,
-        icon: path.join('src', 'images', 'dialer_icon.png'),
+        icon: path.join('src', 'images', 'chat_icon.png'),
         closable: false,
         minimizable: false,
         maximizable: false,
         resizable: false,
-        title: "Vitel dialer"
+        title: "Live vitel chat"
     })
-    dialerwindow.on('closed', _ => {
+    chatwindow.on('closed', _ => {
         console.log('dialerwindow closed')
         dialerwindow = null; //make sure its garbage collected
     })
-    dialerwindow.loadURL(url.format({
+    chatwindow.loadURL(url.format({
         protocol: 'file',
         slashes: true,
-        pathname: require('path').join(__dirname, '/../pages', 'dialer.html')
+        pathname: require('path').join(__dirname, '/../pages', 'chat.html')
     }))
 
-    return dialerwindow;
+    return chatwindow;
 }
